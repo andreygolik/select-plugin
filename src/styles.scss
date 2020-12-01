@@ -20,6 +20,7 @@ $height: 46px;
 .select {
   width: 100%;
   position: relative;
+  z-index: 100;
 
   &.open {
     .select__dropdown {
@@ -28,6 +29,10 @@ $height: 46px;
 
     .select__input {
       border-bottom: none;
+    }
+
+    .select__backdrop {
+      display: block;
     }
   }
 
@@ -50,7 +55,7 @@ $height: 46px;
     top: $height;
     left: 0;
     right: 0;
-    max-height: 200px;
+    max-height: 220px;
     overflow-y: auto;
     box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.3);
   }
@@ -63,12 +68,30 @@ $height: 46px;
 
   &__item {
     padding: 0.75rem 1rem;
-    border-bottom: 1px solid #ccc;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid #ccc;
+    }
+
+    &.selected {
+      background-color: #dfefff;
+    }
 
     &:hover {
       background-color: #eee;
       cursor: pointer;
       transition: 0.15s background-color ease-in;
     }
+  }
+
+  &__backdrop {
+    display: none;
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: transparent;
   }
 }
